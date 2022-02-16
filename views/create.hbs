@@ -1,0 +1,34 @@
+<script>
+    function move(obg,id){
+        localStorage.clear();
+        var name = {'obg':obg, 'id':id};
+        localStorage.setItem("object_name",JSON.stringify(name));
+        document.getElementById('id123').value =obg;
+        //document.location='/group';       
+    }
+</script>
+    <form action="/create" method="POST">
+    <h2>Экран куратора</h2>
+    <div style="display: flex; flex-direction:row; justify-content:space-around ">
+        <div class="main" style="display: flex; flex-direction:column; width:30%">
+            <h4>Существующие группы</h4>
+            {{#each groups}}
+            <button type="submit"  class="btn cyan darken-1" onclick="move('{{Name}}','{{_id}}')">{{Name}}</button>
+            {{/each}}
+            <br>
+ <input type="hidden" name="id123" id="id123" value="0" ></input>
+        </div>
+        <div class="new" style="display: inline; width:50%">
+            <h4>Создать новую</h4>
+            <input id="name" name="newName"></input>
+            <label for="name">Название группы</label>
+            <br>
+            <button class="btn waves-effect cyan darken-1" type="submit" name="action">Submit
+                <i class="material-icons">add</i>
+            </button>
+        </div>
+    </div>
+    <br>
+    <button type="submit" class="btn cyan darken-1">Create</button>
+
+</form>

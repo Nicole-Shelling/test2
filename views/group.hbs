@@ -1,0 +1,36 @@
+
+<form action="/group" method="POST">
+    <h2 id="test">r</h2>
+    <div style="display: flex; flex-direction:row; justify-content:space-around ">
+        <div class="main" style="display: flex; flex-direction:column; width:30%">
+            <h4>Список участников</h4>
+            <br>
+            {{#each group}}
+            <button type="button" class="btn cyan darken-1">{{userName}}</button>
+            {{/each}}    
+        </div>
+        <div class="new" style="display: inline; width:50%">
+            <h4>Добавить новых</h4>
+            <input id="name" name="newName"></input>
+            <label for="name">Фамилия и Имя</label>
+            <br>
+             <input type="hidden" name="id" id="id" ></input>
+            <button class="btn waves-effect cyan darken-1" type="submit" name="action">Submit
+                <i class="material-icons">add</i>
+            </button>
+            
+        </div>
+    </div>
+    <br>
+   
+    <button type="submit" class="btn cyan darken-1">Create</button>
+
+</form>
+<script>
+    var name = localStorage.getItem("object_name");
+   // localStorage.clear();
+    var value1 = JSON.parse(name).obg;
+    var value2 = JSON.parse(name).id;
+    document.getElementById('test').innerHTML =value1;
+    document.getElementById('id').value =value2;
+</script>

@@ -1,0 +1,205 @@
+
+<script>
+    let a = 10;
+    Main = new Array(8);
+    let f ='{{key}}';
+    let w=f.split(' ');
+    for (let i = 0; i < 8; i++) {
+        Main[i] = 0;
+    }
+
+    function test(obj) {
+        obj=obj.parentElement;
+        let score = 0;
+        let arr = obj.getElementsByClassName("select");
+        for (let i = 0; i < 8; i++) {
+            let z = arr[i];
+            let s = +z.options[z.selectedIndex].value;
+            score = score + s;
+        }
+        for (let i = 0; i < 8; i++) {
+            for (let j = 10; j > 0; j--) {
+                let z = arr[i];
+                let selected = z.options[z.selectedIndex].value;
+                if (selected != "0") {
+                    if (j < selected) {
+                        z.options[j - 1].disabled = 0;
+                    }
+                    else { z.options[j - 1].disabled = 'disabled'; }
+                }
+                else {
+                if (j <= a - score) {
+                    z.options[j - 1].disabled = 0;
+                }
+                else { z.options[j - 1].disabled = 'disabled'; }
+            }
+        }
+        arr[i].options[0].disabled = 0;
+    }
+    obj.getElementsByClassName("elem")[0].textContent = "Доступные очки " + (a - score);
+    }
+    function sum() {
+        console.log('hh')
+        let arr = document.getElementsByClassName("todo");
+        for(let r=0;r<{{todos.length}};r++){
+        let m = arr[r].getElementsByClassName("select");
+        let z=w[r].split('');
+    for (let i = 0; i < 8; i++) {
+        let sel = m[i];
+        Main[z[i]-1] = +sel.options[sel.selectedIndex].value + Main[z[i]-1];
+    }   
+    }
+     console.log(Main);
+    let max=Math.max.apply(null, Main);
+    let i=0;
+     while(Main[i]!=max){      
+        i++;
+   }
+    console.log(i);  
+    localStorage.setItem("object_name3", i.toString())
+    document.location.href="/result";
+    }
+
+</script>
+
+
+<h3 id="basicInf">R</h3>
+{{#if todos.length}}
+<ul>
+    {{#each todos}}
+    
+    <li class="todo">
+        
+        <label>
+<div class="elem" style="color:blueviolet">Доступные очки 10</div>
+            <span>{{title}}</span>
+            <br>
+            <span>{{a1}}</span>
+            <select style="display: inline; width: 40pt" onchange="test(this)" class="select">
+                <option value="0">-</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+            <span>{{a2}}</span>
+            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+                <option value="0">-</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+
+            </select>
+            <br>
+            <span>{{a3}}</span>
+            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+                <option value="0">-</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+            <span>{{a4}}</span>
+            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+                <option value="0">-</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+            <span>{{a5}}</span>
+            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+                <option value="0">-</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+            <span>{{a6}}</span>
+            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+                <option value="0">-</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+            <span>{{a7}}</span>
+            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+                <option value="0">-</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+            <span>{{a8}}</span>
+            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+                <option value="0">-</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br>
+        </label>
+    </li>
+
+    {{/each}}
+    <button  class="btn btn-small" onclick="sum()">Save</button>
+</ul>
+{{else}}
+<p>No todos</p>
+{{/if}}
+
+<script>
+    var name2 = localStorage.getItem("object_name2");
+    var value1 = JSON.parse(name2).group;
+    var value2 = JSON.parse(name2).name;
+    document.getElementById('basicInf').innerHTML =value1 + ' :) '+value2;
+</script>
