@@ -31,7 +31,7 @@
          localStorage.clear();
         var a1=group.options[group.selectedIndex].value;        
         var a2=nameR.options[nameR.selectedIndex].value;
-        var Uname = {'group':a1, 'name':a2};
+        var Uname = {'group':a1, 'name':a2, 'number': nameR.selectedIndex};
         localStorage.setItem("object_name2",JSON.stringify(Uname));
         
     }

@@ -8,11 +8,9 @@ const schema2 = new Schema({
         type:[
         {userName: {
             type:String,
-            //default:"Vasya"
         },
         role: String}          
         ],
-       // default:[{userName:"Vasya",role:"main"}]
     }
 })
 module.exports=model('Groups',schema2)
