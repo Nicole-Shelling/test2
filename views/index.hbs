@@ -49,14 +49,28 @@
         Main[z[i]-1] = +sel.options[sel.selectedIndex].value + Main[z[i]-1];
     }   
     }
-     console.log(Main);
-    let max=Math.max.apply(null, Main);
-    let i=0;
-     while(Main[i]!=max){      
+  
+   let Main2= new Array(8); 
+   for(let a=0;a<Main.length;a++){
+       Main2[a]=Main[a];
+   }
+   Main2.sort(function (a, b) {
+    return b - a;
+});
+   let Max1=Main2[0];
+   let Max2=Main2[1];
+   let i=0;
+   let j=0;
+     while(Main[i]!=Max1){      
         i++;
    }
-    console.log(i);  
-    localStorage.setItem("object_name3", i.toString())
+
+    while(Main[j]!=Max2){      
+        j++;
+   }
+
+   let key=i.toString()+j.toString(); 
+    localStorage.setItem("object_name3", key)
     document.location.href="/result";
     }
 

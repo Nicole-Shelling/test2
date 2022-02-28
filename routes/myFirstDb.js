@@ -54,9 +54,11 @@ router.get('/result',async(req,res)=>{
 router.post('/result', async(req,res)=>{
     const groupName=req.body.group1;
     const roleX2=req.body.roleX;
+    const keyX2=req.body.keyX;
     const NumberX=req.body.numberX; 
     const group = await Group.findOne({Name: groupName}); 
     group.Users[NumberX].role=roleX2;
+    group.Users[NumberX].keys=keyX2;
     await group.save()
     res.redirect('/first')
 })
@@ -78,7 +80,7 @@ router.post('/create', async(req,res)=>{
 
 router.post('/group', async(req,res)=>{
     const group = await Group.findById(req.body.id);
-    const men={userName:req.body.newName, role:"https://cdn-icons-png.flaticon.com/128/43/43869.png"};
+    const men={userName:req.body.newName, role:"https://cdn-icons-png.flaticon.com/128/43/43869.png", work:req.body.groupX, keys:"Null Null"};
       group.Users.push(men)
      await group.save()
     res.redirect('/group')

@@ -9,7 +9,9 @@ const schema2 = new Schema({
         {userName: {
             type:String,
         },
-        role: String}          
+        role: String,
+        work: String,
+        keys: String}          
         ],
     }
 })

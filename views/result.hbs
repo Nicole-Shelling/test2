@@ -19,10 +19,13 @@
           <input type="hidden" name="name1" id="name1" value="0" ></input>
           <input  type="hidden" name="numberX" id="numberX" value="5" ></input>
           <input  type="hidden" name="roleX" id="roleX" value="8" ></input>
+          <input  type="hidden" name="keyX" id="keyX" value="7" ></input>
 </form>
 <script>
         var name2 = localStorage.getItem("object_name3");
-        var valueV = JSON.parse(name2);
+        let valueKey1=JSON.parse(name2).toString();
+        let valueKey2=valueKey1.split('');
+        var valueV = Number(valueKey2[0]);
         var imgX;
         switch(valueV){
             case 0:
@@ -74,5 +77,6 @@
         group1.value=value1;
         name1.value=value2;
         numberX.value=value3;       
-        roleX.value=imgX;      
+        roleX.value=imgX;   
+        keyX.value=valueKey1;    
     </script>
