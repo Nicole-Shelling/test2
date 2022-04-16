@@ -36,9 +36,12 @@
         
     }
 </script>
-<form action="/first" method="POST">
+<script>
+    
+</script>
+<form  method="POST" style="padding-left: 10px;">
     <h2>Выбор пользователя</h2>
-    <div class="input-field col s12">
+    <div class="select">
         <select style="display: inline; width: 50%" id="group" onchange="choose(this)">
             <option value="-" disabled selected>Выберите интересующую вас группу</option>
             {{#each groups}}
@@ -47,13 +50,15 @@
         </select>
     </div>
     <br>
+
+
+
     <div class="input-field col s12">
         <select  id="nameR" style="display: inline; width: 50%" >
             <option value="-" disabled selected id="my">Найдите себя в списке</option>
         </select>
     </div>
-     <button class="btn waves-effect cyan darken-1" onclick="move()" type="submit" name="action">Начать тест
-                <i class="material-icons">arrow_forward</i>
+     <button class="button1" onclick="move()" type="submit" name="action">Начать тест
             </button>
 
 </form>

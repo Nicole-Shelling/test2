@@ -1,0 +1,252 @@
+<form action="/newGroup" method="POST" style="margin-left: 10px;">
+    <h2 id="test">Вот наша новая группа</h2>
+     <div class="progress1" >
+            <div id="bar" class="bar1"></div>
+        </div>
+    <div style="display: flex; flex-direction:row;  ">
+        <div class="main" style="display: flex; flex-direction:column; width:30%">
+            <h4>Список участников</h4>
+            <br>
+
+            <div style="display: flex; flex-direction:row; margin-top:5px">
+                <button type="button" id="R_Text" style=" width:80%; margin-right:5px "
+                    class="btn cyan darken-1" onclick="change(0)">Разработчик </button>
+                <img src="" id="R_I1" height='30px' width="30px" style="margin-right:5px " onclick="Click(this)">
+                <img src="" id="R_I2" height='30px' width="30px" onclick="Click(this)">   
+            </div>
+
+            <div style="display: flex; flex-direction:row; margin-top:5px">
+                <button type="button" id="D_Text" style=" width:80%; margin-right:5px "
+                    class="btn cyan darken-1" onclick="change(1)">Дизайнер </button>
+                <img src="" id="D_I1" height='30px' width="30px" style="margin-right:5px " onclick="Click(this)">
+                <img src="" id="D_I2" height='30px' width="30px" onclick="Click(this)">
+            </div>
+
+            <div style="display: flex; flex-direction:row; margin-top:5px">
+                <button type="button" id="A_Text" style=" width:80%; margin-right:5px "
+                    class="btn cyan darken-1" onclick="change(2)">Аналитик </button>
+                <img src="" id="A_I1" height='30px' width="30px" style="margin-right:5px " onclick="Click(this)">
+                <img src="" id="A_I2" height='30px' width="30px" onclick="Click(this)">
+            </div>
+
+            <div style="display: flex; flex-direction:row; margin-top:5px">
+                <button type="button" id="T_Text" style=" width:80%; margin-right:5px "
+                    class="btn cyan darken-1" onclick="change(3)">Тестировщик </button>
+                <img src="" id="T_I1" height='30px' width="30px" style="margin-right:5px " onclick="Click(this)">
+                <img src="" id="T_I2" height='30px' width="30px" onclick="Click(this)">
+        </div>
+        <br>
+        <div id="help" style='font-size: 24px; color:rgba(0, 0, 0, 0.842); '></div>
+    </div>
+    <div class="mySelect" style="margin-top: 100px; width:200px">
+
+    </div>  
+    <br>
+    
+    <br>
+   
+</form>
+<script>
+  
+    </script>
+
+<script>
+    function User(name, role1, role2, func, work, rolePic) {
+        this.name = name;
+        this.role1 = role1;
+        this.role2 = role2;
+        this.func = func;
+        this.work = work;
+        this.rolePic = rolePic
+    }
+    function count() {
+                var count = 0;
+                for (let i = 0; i < R.length; i++) {
+                    if (R[i] != 0) count++;
+                }
+                if (Ras.role1 == "0" || Ras.role1 == "1") count += 1;
+                if (Diz.role1 == "2" || Diz.role1 == "5") count += 1;
+                if (An.role1 == "3" || An.role1 == "6") count += 1;
+                if (Tes.role1 == "4" || Tes.role1 == "7") count += 1;
+                if (Ras.role1 == "0" || Ras.role1 == "1" || Diz.role1 == "0" || Diz.role1 == "1" || An.role1 == "0" || An.role1 == "1" || Tes.role1 == "0" || Tes.role1 == "1") count += 2;
+                console.log(count);
+                bar.style.width=count/14*100+"%";
+            }
+    let roles;
+    let Len = {{ group.length }};
+    let users = new Array(0);
+    let funcX;
+    let user;
+    {{#each group }}
+
+    roles = "{{keys}}";
+    roles = roles.split("");
+
+    switch ("{{work}}") {
+        case "https://cdn-icons-png.flaticon.com/128/1688/1688502.png":
+            funcX = "Р";
+            break
+        case "https://cdn-icons-png.flaticon.com/128/476/476664.png":
+            funcX = "А";
+            break
+        case "https://cdn-icons-png.flaticon.com/128/646/646496.png":
+            funcX = "Д";
+            break
+        case "https://cdn-icons-png.flaticon.com/128/1875/1875561.png":
+            funcX = "Т";
+            break
+    }
+
+    user = new User("{{userName}}", Number(roles[0]), Number(roles[1]), funcX, "{{work}}", "{{role}}");
+    users.push(user);
+    {{/each}}  
+            // Наш алгоритм
+            let R = new Array(8);
+            R.fill(0);
+            var group1 = users.filter(function (hero) {
+                return (hero.role1 == '0' || hero.role1 == '1') && (hero.func == 'Р');
+            });
+            var groupX = users.filter(function (hero) {
+                return (hero.func == 'Р');
+            });
+            group1 = group1.concat(groupX);
+            var Ras = group1[0];
+            R[Number(Ras.role1)] += 1;
+            R[Number(Ras.role1)] += 0.2;
+
+            group1 = users.filter(function (hero) {
+                return (hero.role1 == '2' || hero.role1 == '5') && (hero.func == 'Д');
+            });
+            groupX = users.filter(function (hero) {
+                return (hero.func == 'Д');
+            });
+            group1 = group1.concat(groupX);
+            var i = 0;
+            while (R[Number(group1[i].role1)] >= 1 && i < group1.length - 1) {
+                i++;
+            }
+            var Diz = group1[i];
+            R[Number(Diz.role1)] += 1;
+            R[Number(Diz.role1)] += 0.2;
+
+            group1 = users.filter(function (hero) {
+                return (hero.role1 == '3' || hero.role1 == '6') && (hero.func == 'А');
+            });
+            groupX = users.filter(function (hero) {
+                return (hero.func == 'А');
+            });
+            group1 = group1.concat(groupX);
+            var i = 0;
+            while (R[Number(group1[i].role1)] >= 1 && i < group1.length - 1) {
+                i++;
+            }
+            var An = group1[i];
+            R[Number(An.role1)] = +1;
+            R[Number(An.role2)] = +0.2;
+
+
+            group1 = users.filter(function (hero) {
+                return (hero.role1 == '4' || hero.role1 == '7') && (hero.func == 'Т');
+            });
+            groupX = users.filter(function (hero) {
+                return (hero.func == 'Т');
+            });
+            group1 = group1.concat(groupX);
+            var i = 0;
+            while (R[Number(group1[i].role1)] >= 1 && i < group1.length - 1) {
+                i++;
+            }
+            var Tes = group1[i];
+            R[Number(Tes.role1)] += 1;
+            R[Number(Tes.role1)] += 0.2;
+
+            R_Text.textContent = Ras.name;
+            R_I1.src = Ras.rolePic;
+            R_I2.src = Ras.work;
+
+            D_Text.textContent = Diz.name;
+            D_I1.src = Diz.rolePic;
+            D_I2.src = Diz.work;
+
+            A_Text.textContent = An.name;
+            A_I1.src = An.rolePic;
+            A_I2.src = An.work;
+
+            T_Text.textContent = Tes.name;
+            T_I1.src = Tes.rolePic;
+            T_I2.src = Tes.work;
+            count();
+            let numberOfRole;
+
+            function change(workNum) {
+                var z;
+                numberOfRole=workNum;
+                switch (workNum) {
+                    case 0: z = getChange("Р", Ras.name); break
+                    case 1: z = getChange("Д", Diz.name); break
+                    case 2: z = getChange("А", An.name); break
+                    case 3: z = getChange("Т", Tes.name); break
+                }
+                
+                    let div;
+                    let curr=document.getElementsByClassName("mySelect");
+                    curr[0].innerHTML="";
+                    console.log(workNum);
+                    for (let i = 0; i < z.length; i++) 
+                    {
+                        console.log( z[i].name);
+                        div = document.createElement('div');
+                        div.value = z[i].name;
+                        div.innerHTML = z[i].name;
+                        div.onclick = function() {
+                         chProc(z[i]);
+                        };
+                        div.style="border:3px solid white; margin-bottom: 5px; padding: 5px";
+                        curr[0].append(div);
+                    }                
+            }
+
+              
+
+            function chProc(obj){
+                console.log(obj.name);
+             switch (numberOfRole) {
+                    case 0: Ras=obj; R_Text.textContent=obj.name; R_I1.src = Ras.rolePic; break
+                    case 1: Diz=obj; D_Text.textContent=obj.name; D_I1.src = Diz.rolePic; break
+                    case 2: An=obj; A_Text.textContent=obj.name; A_I1.src = An.rolePic;break
+                    case 3: Tes=obj; T_Text.textContent=obj.name; T_I1.src = Tes.rolePic; break
+                }  
+                console.log(Ras.name); 
+
+             document.getElementsByClassName("mySelect")[0].innerHTML=''; 
+             count();  
+            }
+
+            function getChange(men, name) {
+                var Ngroup = users.filter(function (hero) {
+                    return (hero.func == men) && (hero.name != name);
+                });
+                return Ngroup;
+            }
+
+            function Click(text){
+                text=text.src;
+        switch (text){
+            case "https://cdn-icons-png.flaticon.com/128/3004/3004038.png" : help.textContent="Председатель"; break;
+            case "https://cdn-icons-png.flaticon.com/128/4511/4511885.png" : help.textContent="Формирователь"; break;
+            case "https://cdn-icons-png.flaticon.com/128/3004/3004166.png" : help.textContent="Мыслитель"; break;
+            case "https://cdn-icons-png.flaticon.com/128/4511/4511928.png" : help.textContent="Оценщик"; break;
+            case "https://cdn-icons-png.flaticon.com/512/49/49711.png" : help.textContent="Исполнитель"; break;
+            case "https://cdn-icons-png.flaticon.com/128/6314/6314064.png" : help.textContent="Разведчик"; break;
+            case "https://cdn-icons-png.flaticon.com/128/6314/6314229.png" : help.textContent="Коллективист"; break;
+            case "https://cdn-icons.flaticon.com/png/128/6197/premium/6197387.png?token=exp=1645705712~hmac=6ccb1f522ca3dbbc993be66ee86ebc03" : help.textContent="Доводчик"; break; 
+            case "https://cdn-icons-png.flaticon.com/128/1688/1688502.png" : help.textContent="Разработчик"; break;
+            case "https://cdn-icons-png.flaticon.com/128/646/646496.png" : help.textContent="Дизайнер"; break;
+            case "https://cdn-icons-png.flaticon.com/128/476/476664.png" : help.textContent="Аналитик"; break;
+            case "https://cdn-icons-png.flaticon.com/128/1875/1875561.png" : help.textContent="Тестировщик"; break;         
+        }
+         help.style="font-size: 24px; color:rgba(0, 0, 0, 0.842); border:3px solid white; margin-bottom: 5px; padding: 5px";
+    }
+
+          
+</script>

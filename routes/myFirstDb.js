@@ -5,7 +5,7 @@ const Group=require('C:/test2/models/Group')
 const Table=require('C:/test2/models/Table')
 const router=Router()
 var Name
-router.get('/',async(req,res)=>{
+router.get('/index',async(req,res)=>{
     const todos=await Todo.find({}).lean()
     const keysOld=await Table.find({}).lean()
     const key=keysOld[0].Users
@@ -25,22 +25,30 @@ router.get('/create',async(req,res)=>{
     })
 })
 
-router.get('/first',async(req,res)=>{
+router.get('/',async(req,res)=>{
     const groups=await Group.find({}).lean()
     res.render('first',{
         title: "start page",
-        isFirst: true,
         groups
     })
 })
 
 router.get('/group',async(req,res)=>{
-    //const groups=await Group.find({}).lean()
     const group2 = await Group.findOne({Name: Name}).lean();
     const group=group2.Users
 
     res.render('group',{
         title: "add new",
+        group,
+    })
+})
+
+router.get('/newGroup',async(req,res)=>{
+    const group2 = await Group.findOne({Name: Name}).lean();
+    const group=group2.Users
+
+    res.render('newGroup',{
+        title: "find new",
         group,
     })
 })
@@ -55,8 +63,9 @@ router.post('/result', async(req,res)=>{
     const groupName=req.body.group1;
     const roleX2=req.body.roleX;
     const keyX2=req.body.keyX;
-    const NumberX=req.body.numberX; 
+    var NumberX=req.body.numberX; 
     const group = await Group.findOne({Name: groupName}); 
+    NumberX=group.Users.length-NumberX-1;
     group.Users[NumberX].role=roleX2;
     group.Users[NumberX].keys=keyX2;
     await group.save()
@@ -79,15 +88,19 @@ router.post('/create', async(req,res)=>{
 })
 
 router.post('/group', async(req,res)=>{
+    if(req.body.id123==0){
     const group = await Group.findById(req.body.id);
     const men={userName:req.body.newName, role:"https://cdn-icons-png.flaticon.com/128/43/43869.png", work:req.body.groupX, keys:"Null Null"};
       group.Users.push(men)
      await group.save()
-    res.redirect('/group')
+    res.redirect('/group')}
+    else{
+        res.redirect('/newGroup')    
+    }
 })
 
-router.post('/first', (req,res)=>{
-    res.redirect('/')  
+router.post('/', (req,res)=>{
+    res.redirect('/index')  
 })
 
 module.exports=router

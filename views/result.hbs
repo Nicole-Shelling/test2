@@ -1,7 +1,7 @@
 
-<form action="/result" method="POST">    
+<form action="/result" method="POST" >    
     <div class="row">
-    <div class="col s12 m6">
+    <div class="col s12 m6" style="  margin:0 30% 0 30%; width:40%;">
       <div class="card" >
         <div class="card-image">
           <img src="https://img.wallpapersafari.com/desktop/1440/900/66/72/NpY6Uq.jpg" height="200px" alt="JavaScript test"/>
@@ -25,7 +25,8 @@
         var name2 = localStorage.getItem("object_name3");
         let valueKey1=JSON.parse(name2).toString();
         let valueKey2=valueKey1.split('');
-        var valueV = Number(valueKey2[0]);
+        var valueV = Number(valueKey2[0])-1;
+        valueKey1=valueV.toString()+valueKey2[1];
         var imgX;
         switch(valueV){
             case 0:
@@ -51,7 +52,7 @@
             case 4:
             document.getElementById('dd').innerHTML ="Вы исполнитель";
             document.getElementById('text').innerHTML = "Исполнитель - основным качеством данной роли является дисциплинированность. Исполнители четко понимают поставленные перед ними задачи, и все их действия зачастую направлены не на получение собственной выгоды, а на достижение командных целей. У исполнителей отлично получается строить планы и следовать им. Они становятся эффективными и надежными организаторами. Черты характера: консервативность, дисциплинированность, надежность.";
-            imgX="https://cdn-icons.flaticon.com/png/128/3150/premium/3150632.png?token=exp=1645705931~hmac=644c54bc129441aae371eef8843dc8d5";
+            imgX="https://cdn-icons-png.flaticon.com/512/49/49711.png";
             break;
             case 5:
             document.getElementById('dd').innerHTML ="Вы разведчик";
@@ -71,7 +72,6 @@
         }
         var name2 = localStorage.getItem("object_name7");
         var value1 = JSON.parse(name2).group;
-        console.log(value1);
         var value2 = JSON.parse(name2).name;
         var value3 = JSON.parse(name2).number;
         group1.value=value1;

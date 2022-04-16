@@ -8,15 +8,20 @@
             {{#each group}}
             <div style="display: flex; flex-direction:row; margin-top:5px">
             <button type="button" style=" width:80%; margin-right:5px " class="btn cyan darken-1">{{userName}}</button>
-            <img src="{{role}}" height='30px' width="30px" style="margin-right:5px ">
-            <img src="{{work}}" height='30px' width="30px">
+            <img src="{{role}}" height='30px' width="30px" style="margin-right:5px " onclick="Click('{{role}}')">
+            <img src="{{work}}" height='30px' width="30px" onclick="Click('{{work}}')">
            </div>
-            {{/each}}    
+            {{/each}} <br>
+            <input type="hidden" name="id123" id="id123" value="0" ></input>
+             <button class="btn waves-effect cyan darken-1"  onclick="move()">Создать идеальную группу
+                <i class="material-icons">add</i>
+            </button>   
+   
         </div>
         <div class="new" style="display: inline; width:50%">
             <h4>Добавить новых</h4>
-            <input id="name" name="newName"></input>
-            <label for="name">Фамилия и Имя</label>
+            <input id="name" name="newName" oninput="check(this.value)"></input>
+            <label for="name" id="lab">Фамилия и Имя</label>
             <br>
             <select style="display: inline; width: 50%" id="group"  id="group" name="groupX">
             <option value="-" disabled selected >Выберите функционал участника</option>
@@ -28,15 +33,51 @@
             <br><br>
              <input type="hidden" name="id" id="id" ></input>
               <input type="hidden" name="func" id="func" ></input>
-            <button class="btn waves-effect cyan darken-1" type="submit" name="action">Submit
-                <i class="material-icons">add</i>
-            </button>           
+              <div>
+            <button class="button1" style="margin-bottom: 60px;" id="myButt"  name="action">Добавить
+            </button> 
+            <div id="help" style='font-size: 24px; color:rgba(0, 0, 0, 0.842)'>
+            
+           </div>
+            </div>        
         </div>
     </div>
     <br>
     
 </form>
 <script>
+    function Click(text){
+        switch (text){
+            case "https://cdn-icons-png.flaticon.com/128/3004/3004038.png" : help.textContent="Председатель"; break;
+            case "https://cdn-icons-png.flaticon.com/128/4511/4511885.png" : help.textContent="Формирователь"; break;
+            case "https://cdn-icons-png.flaticon.com/128/3004/3004166.png" : help.textContent="Мыслитель"; break;
+            case "https://cdn-icons-png.flaticon.com/128/4511/4511928.png" : help.textContent="Оценщик"; break;
+            case "https://cdn-icons-png.flaticon.com/512/49/49711.png" : help.textContent="Исполнитель"; break;
+            case "https://cdn-icons-png.flaticon.com/128/6314/6314064.png" : help.textContent="Разведчик"; break;
+            case "https://cdn-icons-png.flaticon.com/128/6314/6314229.png" : help.textContent="Коллективист"; break;
+            case "https://cdn-icons.flaticon.com/png/128/6197/premium/6197387.png?token=exp=1645705712~hmac=6ccb1f522ca3dbbc993be66ee86ebc03" : help.textContent="Доводчик"; break; 
+            case "https://cdn-icons-png.flaticon.com/128/1688/1688502.png" : help.textContent="Разработчик"; break;
+            case "https://cdn-icons-png.flaticon.com/128/646/646496.png" : help.textContent="Дизайнер"; break;
+            case "https://cdn-icons-png.flaticon.com/128/476/476664.png" : help.textContent="Аналитик"; break;
+            case "https://cdn-icons-png.flaticon.com/128/1875/1875561.png" : help.textContent="Тестировщик"; break;           
+        }
+    }
+    function move(){
+        document.getElementById('id123').value =2;
+    }
+    function check(value){
+        let i=0;
+        {{#each group}}
+        if("{{userName}}"==value) i=1;
+        {{/each}}
+        if(i) 
+        {
+            lab.textContent="Такой сотрудник уже существует";
+            myButt.disabled="disabled";          
+        }
+        else {myButt.disabled=0;
+        lab.textContent="Фамилия и Имя";}
+    }
     var name = localStorage.getItem("object_name");
    // localStorage.clear();
     var value1 = JSON.parse(name).obg;

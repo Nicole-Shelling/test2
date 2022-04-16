@@ -1,0 +1,32 @@
+.progress1{
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    border: rgb(39, 167, 226) solid;
+    padding: 3px;
+}
+
+.bar1{
+    width: 10%;
+    height: 100%;
+    border-radius: 4px;
+    background: rgb(35, 151, 204);
+    transition-property: width;
+    transition-duration: 3s;
+}
+.button1{
+    appearance: none;
+  border: 0;
+  width: 250px;
+  border-radius: 5px;
+  background: rgb(39, 167, 226);
+  color: #fff;
+  padding: 10px 10px;
+  font-size: 16px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.733);
+  
+}
+.button1:hover{
+    background: rgb(35, 151, 204);    
+}
+

@@ -1,5 +1,9 @@
 
 <script>
+    function pass(){
+        alert('fg')
+    }
+    director.onclick=pass();
     let a = 10;
     Main = new Array(8);
     let f ='{{key}}';
@@ -69,27 +73,37 @@
         j++;
    }
 
-   let key=i.toString()+j.toString(); 
+   let key=(i+1).toString()+j.toString(); 
     localStorage.setItem("object_name3", key)
     document.location.href="/result";
     }
 
 </script>
-
+<form action="/result">
 
 <h3 id="basicInf">R</h3>
+<div style="font-size: 18px; width:80%; color:rgba(0, 0, 0, 0.842); padding: 5px">Инструкция. В каждом из семи блоков данного опросника распределите 10 баллов между возможными ответами согласно тому, как вы полагаете они лучше всего подходят вашему собственному поведению. Если вы согласны с каким-либо утверждением на все 100%, вы можете отдать ему все 10 баллов. При этом одному предложению можно присвоить минимум 2 балла. Проверьте, чтобы сумма всех баллов по каждому блоку не превышала 10.
+</div>
 {{#if todos.length}}
 <ul>
     {{#each todos}}
-    
-    <li class="todo">
+
+     <div class="row">
+    <div class="col s12 m6" style="  margin:0 12% 0 12%; width:76%; font-family: sans-serif;">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog2325432/banner_1.jpg" height="100px">
+          <a class="btn-floating halfway-fab waves-effect waves-light red" style="text-align: center;"></a>
+        </div>
+        <div class="card-content" >
+          <li class="todo">
         
-        <label>
-<div class="elem" style="color:blueviolet">Доступные очки 10</div>
+        <label style="font-size: 14px; color:rgba(0, 0, 0, 0.842)" >
+        <div class="elem" style="color:black; font-size: 25px">Доступные очки 10</div>
             <span>{{title}}</span>
             <br>
             <span>{{a1}}</span>
-            <select style="display: inline; width: 40pt" onchange="test(this)" class="select">
+            <select style="display: inline; width: 40pt; height: 23pt" onchange="test(this)" class="select">
                 <option value="0">-</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -103,7 +117,7 @@
             </select>
             <br>
             <span>{{a2}}</span>
-            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+            <select style="display: inline;width: 40pt; height: 23pt" onchange="test(this)" class="select">
                 <option value="0">-</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -118,7 +132,7 @@
             </select>
             <br>
             <span>{{a3}}</span>
-            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+            <select style="display: inline;width: 40pt; height: 23pt" onchange="test(this)" class="select">
                 <option value="0">-</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -132,7 +146,7 @@
             </select>
             <br>
             <span>{{a4}}</span>
-            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+            <select style="display: inline;width: 40pt; height: 23pt" onchange="test(this)" class="select">
                 <option value="0">-</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -146,7 +160,7 @@
             </select>
             <br>
             <span>{{a5}}</span>
-            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+            <select style="display: inline;width: 40pt; height: 23pt" onchange="test(this)" class="select">
                 <option value="0">-</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -160,7 +174,7 @@
             </select>
             <br>
             <span>{{a6}}</span>
-            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+            <select style="display: inline;width: 40pt; height: 23pt" onchange="test(this)" class="select">
                 <option value="0">-</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -174,7 +188,7 @@
             </select>
             <br>
             <span>{{a7}}</span>
-            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+            <select style="display: inline;width: 40pt; height: 23pt" onchange="test(this)" class="select">
                 <option value="0">-</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -188,7 +202,7 @@
             </select>
             <br>
             <span>{{a8}}</span>
-            <select style="display: inline;width: 40pt" onchange="test(this)" class="select">
+            <select style="display: inline;width: 40pt; height: 23pt" onchange="test(this)" class="select">
                 <option value="0">-</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -204,14 +218,24 @@
         </label>
     </li>
 
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    
     {{/each}}
     <button  class="btn btn-small" onclick="sum()">Save</button>
 </ul>
 {{else}}
 <p>No todos</p>
 {{/if}}
-
+</form>
 <script>
+    var num=document.getElementsByClassName("btn-floating halfway-fab waves-effect waves-light red");
+    for(let i=0;i<num.length;i++){
+        num[i].textContent=(i+1).toString();
+    }
     var name2 = localStorage.getItem("object_name2");
     var value1 = JSON.parse(name2).group;
     var value2 = JSON.parse(name2).name;
