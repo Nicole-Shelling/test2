@@ -15,10 +15,12 @@
         if(i) 
         {
             lab.textContent="Такая группа уже существует";
-            myButt.disabled="disabled";          
+            myButt.disabled="disabled";
+            myButt.style.background=" rgb(175, 174, 174)"          
         }
         else {myButt.disabled=0;
-        lab.textContent="Название группы";}
+        lab.textContent="Название группы";
+        myButt.style.background="rgb(39, 167, 226)"}
     }
 </script>
     <form action="/create" method="POST">

@@ -73,10 +73,12 @@
         if(i) 
         {
             lab.textContent="Такой сотрудник уже существует";
-            myButt.disabled="disabled";          
+            myButt.disabled="disabled"; 
+            myButt.style.background=" rgb(175, 174, 174)"         
         }
         else {myButt.disabled=0;
-        lab.textContent="Фамилия и Имя";}
+        lab.textContent="Фамилия и Имя";
+        myButt.style.background="rgb(39, 167, 226)"}
     }
     var name = localStorage.getItem("object_name");
    // localStorage.clear();

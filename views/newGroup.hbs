@@ -3,6 +3,7 @@
      <div class="progress1" >
             <div id="bar" class="bar1"></div>
         </div>
+       
     <div style="display: flex; flex-direction:row;  ">
         <div class="main" style="display: flex; flex-direction:column; width:30%">
             <h4>Список участников</h4>
@@ -70,6 +71,7 @@
                 if (Tes.role1 == "4" || Tes.role1 == "7") count += 1;
                 if (Ras.role1 == "0" || Ras.role1 == "1" || Diz.role1 == "0" || Diz.role1 == "1" || An.role1 == "0" || An.role1 == "1" || Tes.role1 == "0" || Tes.role1 == "1") count += 2;
                 console.log(count);
+                bar.textContent=Math.round(count/14*100)+"%";
                 bar.style.width=count/14*100+"%";
             }
     let roles;

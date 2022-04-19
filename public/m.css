@@ -13,6 +13,9 @@
     background: rgb(35, 151, 204);
     transition-property: width;
     transition-duration: 3s;
+    text-align: center;
+    color: white;
+  
 }
 .button1{
     appearance: none;

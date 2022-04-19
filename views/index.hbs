@@ -1,9 +1,5 @@
 
 <script>
-    function pass(){
-        alert('fg')
-    }
-    director.onclick=pass();
     let a = 10;
     Main = new Array(8);
     let f ='{{key}}';
@@ -36,14 +32,25 @@
                     z.options[j - 1].disabled = 0;
                 }
                 else { z.options[j - 1].disabled = 'disabled'; }
-            }
+            }           
         }
         arr[i].options[0].disabled = 0;
+        if((a-score-2)>0) arr[i].options[a-score-2].disabled="disabled";
     }
     obj.getElementsByClassName("elem")[0].textContent = "Доступные очки " + (a - score);
+    let isTrue=0;
+    let blocks=document.getElementsByClassName("elem");
+    let myButt=document.getElementById('myButt');
+    for(let i=0;i<blocks.length;i++){
+        if(blocks[i].textContent!="Доступные очки 0") {isTrue=1;
+         break;
+    }
+    }
+    if(!isTrue) {myButt.disabled=0;  myButt.style.background=" rgb(39, 167, 226)"}
+    else {myButt.disabled="disabled";
+    myButt.style.background=" rgb(175, 174, 174)"}
     }
     function sum() {
-        console.log('hh')
         let arr = document.getElementsByClassName("todo");
         for(let r=0;r<{{todos.length}};r++){
         let m = arr[r].getElementsByClassName("select");
@@ -225,11 +232,12 @@
     
     
     {{/each}}
-    <button  class="btn btn-small" onclick="sum()">Save</button>
 </ul>
 {{else}}
 <p>No todos</p>
 {{/if}}
+    <button  class="button1" id="myButt" style="margin-left:40%; margin-right:40%; background:rgb(175, 174, 174)" disabled onclick="sum()">Save</button>
+
 </form>
 <script>
     var num=document.getElementsByClassName("btn-floating halfway-fab waves-effect waves-light red");

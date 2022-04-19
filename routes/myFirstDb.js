@@ -69,7 +69,7 @@ router.post('/result', async(req,res)=>{
     group.Users[NumberX].role=roleX2;
     group.Users[NumberX].keys=keyX2;
     await group.save()
-    res.redirect('/first')
+    res.redirect('/')
 })
 
 router.post('/create', async(req,res)=>{
